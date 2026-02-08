@@ -78,13 +78,14 @@ app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
     // console.log(res.locals.success);
+    res.locals.currUser =req.user;
     next();
 });
 
 app.get("/demouser",async(req,res)=>{
     let fakeUser = new User({
         email:"student@gmail.com",
-        username:"delta-student"
+        username:"dealtastudent"
     });
     let registeredUser =await User.register(fakeUser,"helloworld");
     res.send(registeredUser);
@@ -262,6 +263,7 @@ app.use((err, req, res, next) => {
     
 app.listen(8080,()=>{
     console.log("app is listing at port 8080");
+    console.log("http://localhost:8080/listing");
 });
 
 //validation is not working properly for page now working 

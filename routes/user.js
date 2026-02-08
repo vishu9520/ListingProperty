@@ -39,4 +39,14 @@ router.post("/login",
 req.flash("success","Welcome back to Lissting Property! You are Logged in!");
 res.redirect("listing");
 });
+
+router.get("/logout",(req,res,next)=>{
+    req.logout((err)=>{
+        if(err){
+           return next(err);
+        }
+        req.flash("success","you are logged out");
+        res.redirect("listing");
+    });
+})
 module.exports=router;
